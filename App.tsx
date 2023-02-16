@@ -9,7 +9,7 @@ export default function App() {
         backgroundColor: "#202020",
       }}
     >
-      <StatusBar />
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <HomeScreen />
     </View>
   );

@@ -3,38 +3,38 @@ import drink from "../../assets/category/drink.png";
 import cafe_2 from "../../assets/category/cafe_2.png";
 import muffin from "../../assets/category/muffin.png";
 
-import hot_caffe from "../../assets/carousel/cafe_hot_2.png";
-import drink_c from "../../assets/carousel/drink_2.png";
-import cafe2 from "../../assets/carousel/caffee_2.png";
-import muffin_2 from "../../assets/carousel/muffin_2.png";
+import p1 from "../../assets/carousel/p1.png";
+import p2 from "../../assets/carousel/p2.png";
+import p3 from "../../assets/carousel/p3.png";
+import p4 from "../../assets/carousel/p4.png";
 
 export const images = [
   {
-    image: hot_caffe,
+    image: p1,
     category: "hot caffe",
     avatarCategory: hotCaffe,
-    title: "Caramel Frappuccino",
+    title: "Vainilla Latte",
     price: 100,
   },
   {
-    image: drink_c,
+    image: p2,
     category: "drinks",
     avatarCategory: drink,
     title: "Caramel Frappuccino",
     price: 300,
   },
   {
-    image: cafe2,
+    image: p3,
     category: "hot teas",
     avatarCategory: cafe_2,
-    title: "Titulo del producto",
+    title: "Frappuccino",
     price: 150,
   },
   {
-    image: muffin_2,
+    image: p4,
     category: "bakery",
     avatarCategory: muffin,
-    title: "Titulo del producto",
+    title: "Latte Macchiato",
     price: 350,
   },
 ];

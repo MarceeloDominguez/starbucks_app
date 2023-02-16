@@ -26,7 +26,8 @@ interface Data {
 
 export default function HomeScreen() {
   const scrollX = React.useRef(new Animated.Value(0)).current;
-  const [index, setIndex] = useState(0);
+  const [indexCarousel, setIndexCarousel] = useState(0);
+
   const [dataLocal, setDataLocal] = useState<Data[]>([
     { key: "left-spacer" } as any,
     ...images,
@@ -35,27 +36,16 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          position: "absolute",
-          top: height >= 600 ? 50 : 10,
-          left: 35,
-          fontSize: 35,
-          width: height >= 600 ? width * 0.6 : width * 0.7,
-          fontWeight: "bold",
-        }}
-      >
-        Smooth Out Your Everyday
-      </Text>
+      <Text style={styles.title}>Smooth Out Your Everyday</Text>
       <View style={styles.circleScreen} />
       <View>
         <View style={styles.pagination}>
-          {images.map((item, i) => {
+          {images.map((item, index) => {
             return (
-              <View key={i} style={styles.containerCirclesCategory}>
+              <View key={index} style={styles.containerCirclesCategory}>
                 <View
                   style={{
-                    bottom: i === 1 || i === 2 ? 22 : -20,
+                    bottom: index === 1 || index === 2 ? 22 : -20,
                     alignItems: "center",
                   }}
                 >
@@ -63,7 +53,8 @@ export default function HomeScreen() {
                     style={[
                       styles.dot,
                       {
-                        backgroundColor: index === i ? "#91b8a3" : "#fff",
+                        backgroundColor:
+                          indexCarousel === index ? "#91b8a3" : "#fff",
                       },
                     ]}
                   >
@@ -77,7 +68,7 @@ export default function HomeScreen() {
                     style={[
                       styles.nameCategory,
                       {
-                        color: index === i ? "#91b8a3" : "#fff",
+                        color: indexCarousel === index ? "#91b8a3" : "#fff",
                       },
                     ]}
                   >
@@ -123,7 +114,11 @@ export default function HomeScreen() {
                 style={[styles.containerImage, { transform: [{ translateY }] }]}
               >
                 <TouchableOpacity
-                  style={{ justifyContent: "center", alignItems: "center" }}
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: height * 0.5,
+                  }}
                 >
                   <Image
                     source={item.image}
@@ -132,41 +127,17 @@ export default function HomeScreen() {
                   />
                   <View style={styles.circleImageCarousel} />
                 </TouchableOpacity>
-                <View
-                  style={{
-                    position: "absolute",
-                    bottom: height >= 600 ? 20 : -20,
-                    alignItems: "center",
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      fontWeight: "bold",
-                      letterSpacing: 0.5,
-                      color: "rgb(232,226,210)",
-                      width: 120,
-                      textAlign: "center",
-                    }}
-                  >
-                    {item.title}
-                  </Text>
-                  <Text
-                    style={{
-                      marginTop: 2,
-                      fontSize: 15,
-                      color: "rgb(232,226,210)",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    ${item.price}
-                  </Text>
+                <View style={styles.containerTitleCarousel}>
+                  <Text style={styles.titleImageCarousel}>{item.title}</Text>
+                  <Text style={styles.priceProduct}>${item.price}</Text>
                 </View>
               </Animated.View>
             );
           }}
           onMomentumScrollEnd={(e) => {
-            setIndex(Math.round(e.nativeEvent.contentOffset.x / ITEM_SIZE));
+            setIndexCarousel(
+              Math.round(e.nativeEvent.contentOffset.x / ITEM_SIZE)
+            );
           }}
         />
       </View>
@@ -180,6 +151,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "column",
     justifyContent: "flex-end",
+  },
+  title: {
+    position: "absolute",
+    top: height >= 600 ? 50 : 10,
+    left: 35,
+    fontSize: 35,
+    width: height >= 600 ? width * 0.6 : width * 0.7,
+    fontWeight: "bold",
+    color: "#202020",
   },
   circleScreen: {
     backgroundColor: "#44976e",
@@ -205,7 +185,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
-    elevation: 6,
   },
   imageCategory: {
     width: 40,
@@ -215,7 +194,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     textTransform: "uppercase",
     fontSize: 11,
-    fontWeight: "700",
+    fontWeight: "bold",
     letterSpacing: 0.4,
   },
   spaceNoImage: {
@@ -229,7 +208,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: ITEM_SIZE,
-    height: height * 0.47,
+    height: height * 0.4,
     zIndex: 1,
   },
   circleImageCarousel: {
@@ -238,6 +217,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#91b8a3",
     position: "absolute",
     borderRadius: height >= 600 ? 105 : 90,
-    bottom: height >= 600 ? 90 : 45,
+    bottom: height >= 600 ? 40 : 30,
+  },
+  containerTitleCarousel: {
+    position: "absolute",
+    bottom: height >= 600 ? -25 : -30,
+    alignItems: "center",
+  },
+  titleImageCarousel: {
+    fontSize: 15,
+    fontWeight: "bold",
+    letterSpacing: 0.5,
+    color: "rgb(232,226,210)",
+    width: 120,
+    textAlign: "center",
+  },
+  priceProduct: {
+    marginTop: 2,
+    fontSize: 15,
+    color: "rgb(232,226,210)",
+    fontWeight: "bold",
   },
 });
