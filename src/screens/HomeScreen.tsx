@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import {
   View,
   Text,
@@ -7,24 +8,19 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity,
-  ImageSourcePropType,
 } from "react-native";
 import { images } from "../constants/data";
+import { RootStackParams } from "../navigation/Navigation";
+import { Data } from "../interface/interface";
 
 const { width, height } = Dimensions.get("window");
 
 const ITEM_SIZE = width * 0.55;
 const SPACER_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 
-interface Data {
-  image: ImageSourcePropType;
-  category: string;
-  avatarCategory: string;
-  title: string;
-  price: number;
-}
+interface Props extends NativeStackScreenProps<RootStackParams> {}
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }: Props) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const [indexCarousel, setIndexCarousel] = useState(0);
 
@@ -114,6 +110,7 @@ export default function HomeScreen() {
                 style={[styles.containerImage, { transform: [{ translateY }] }]}
               >
                 <TouchableOpacity
+                  onPress={() => navigation.navigate("DetailsScreen", item)}
                   style={{
                     justifyContent: "center",
                     alignItems: "center",

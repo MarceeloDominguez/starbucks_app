@@ -1,18 +1,21 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
-import HomeScreen from "./src/screens/HomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar, StyleSheet, View } from "react-native";
+import Navigation from "./src/navigation/Navigation";
 
 export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "#202020",
-      }}
-    >
+    <View style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-      <HomeScreen />
+      <NavigationContainer>
+        <Navigation />
+      </NavigationContainer>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#202020",
+  },
+});
