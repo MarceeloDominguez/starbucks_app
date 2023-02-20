@@ -11,6 +11,7 @@ import {
 import { RootStackParams } from "../navigation/Navigation";
 import HeaderDetailsScreen from "../components/HeaderDetailsScreen";
 import SizeOptions from "../components/SizeOptions";
+import AddOrder from "../components/AddOrder";
 
 interface Props
   extends NativeStackScreenProps<RootStackParams, "DetailsScreen"> {}
@@ -38,6 +39,7 @@ export default function DetailsScreen({ route }: Props) {
       </View>
 
       <SizeOptions />
+      <AddOrder />
     </ScrollView>
   );
 }

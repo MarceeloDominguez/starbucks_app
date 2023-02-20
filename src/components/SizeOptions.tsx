@@ -16,7 +16,7 @@ const icons: Icon[] = [
 ];
 
 export default function SizeOptions() {
-  const [indexSelected, setindexSelected] = useState(0);
+  const [indexSelected, setindexSelected] = useState(1);
 
   return (
     <View style={styles.container}>
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
   },
   titlePrimary: {
     fontSize: 14,
-    marginTop: 15,
-    marginBottom: 20,
+    marginTop: 20,
+    marginBottom: 25,
     fontWeight: "700",
     opacity: 0.5,
     letterSpacing: 0.4,

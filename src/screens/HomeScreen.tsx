@@ -50,7 +50,7 @@ export default function HomeScreen({ navigation }: Props) {
                       styles.dot,
                       {
                         backgroundColor:
-                          indexCarousel === index ? "#91b8a3" : "#fff",
+                          indexCarousel === index ? "#91b8a3" : "#f0f9f4",
                       },
                     ]}
                   >
@@ -64,7 +64,7 @@ export default function HomeScreen({ navigation }: Props) {
                     style={[
                       styles.nameCategory,
                       {
-                        color: indexCarousel === index ? "#91b8a3" : "#fff",
+                        color: indexCarousel === index ? "#91b8a3" : "#f0f9f4",
                       },
                     ]}
                   >
